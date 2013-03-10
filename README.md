@@ -19,22 +19,27 @@ Winter 2013
 
 <h3>python(x,y)</h3>
 <p>
-	Description: Python package with tools for scientific computing. 
+Description: Python package with tools for scientific computing. 
 </p>
 <p>
-	Link: https://code.google.com/p/pythonxy/
+Link: https://code.google.com/p/pythonxy/
 </p>
+
 <h3>pydicom.py</h3>
 <p>
-	Description: Python module for accessing DICOM data. 
+Description: Python module for accessing DICOM data. 
 </p>
 <p>	
-	Link: https://code.google.com/p/pydicom/
+Link: https://code.google.com/p/pydicom/
 </p>
 <h3>dcmtk</h3>
 <p>
-	Description: Library for processing DICOM image files.
+Description: Library for processing DICOM image files.
 </p>
 <p>
-	Link: http://dicom.offis.de/dcmtk.php.en
+Link: http://dicom.offis.de/dcmtk.php.en
 </p>
+<h3>GitHub</h3>
+<h3>Amazon Web Services</h3>
+
+<h2>Deployment</h2>
