@@ -39,6 +39,9 @@ Description: Library for processing DICOM image files.
 <p>
 Link: http://dicom.offis.de/dcmtk.php.en
 </p>
+<p>
+Installation: http://support.dcmtk.org/docs/file_install.html
+</p>
 <h3>GitHub</h3>
 <h3>Amazon Web Services</h3>
 
