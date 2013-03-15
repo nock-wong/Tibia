@@ -1,0 +1,566 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"DIC",
+				"DICOMDIR"
+			],
+			[
+				"fan_1_",
+				"fan_1_en_desired"
+			],
+			[
+				"no",
+				"node"
+			],
+			[
+				"dest",
+				"dest_filename"
+			],
+			[
+				"sourc",
+				"source_filename"
+			],
+			[
+				"sort",
+				"sort_by_column"
+			],
+			[
+				"data",
+				"dataTools"
+			],
+			[
+				"directo",
+				"directory_full"
+			],
+			[
+				"direc",
+				"directories"
+			],
+			[
+				"sta",
+				"start_day"
+			],
+			[
+				"start",
+				"start_month"
+			],
+			[
+				"radiat",
+				"radiator_temperature"
+			],
+			[
+				"weater",
+				"weather_data"
+			],
+			[
+				"_draw",
+				"_draw_room_temperature"
+			],
+			[
+				"cha",
+				"channels"
+			],
+			[
+				"end_m",
+				"end_month"
+			],
+			[
+				"get",
+				"get_timezone"
+			],
+			[
+				"log_",
+				"log_exists"
+			],
+			[
+				"idigi",
+				"idigi_upload"
+			],
+			[
+				"si",
+				"site_code"
+			],
+			[
+				"room",
+				"room_temp"
+			],
+			[
+				"update",
+				"update_room_temperature_log"
+			],
+			[
+				"site",
+				"site_code"
+			],
+			[
+				"da",
+				"day"
+			],
+			[
+				"room_temperature",
+				"room_temperature_log_exists"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"contents": "\n",
+			"file": "code/dicom/display.py",
+			"file_size": 38,
+			"file_write_time": 130076157757604227,
+			"settings":
+			{
+				"buffer_size": 1,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "code/dicom/load.py",
+			"settings":
+			{
+				"buffer_size": 1787,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "Packages/Python/Python.sublime-build",
+	"command_palette":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/Users/Nick/Desktop/Tibia/code/dicom/load.py",
+		"/C/Users/Nick/Downloads/distribute_setup.py",
+		"/C/Users/Nick/Documents/GitHub/Radiator-Labs/Node_api/GUI.py",
+		"/C/Users/Nick/Downloads/Node_api/Node_api/GUI_2.py",
+		"/C/Users/Nick/Desktop/Tibia/README.md",
+		"/C/Users/Nick/Desktop/Tibia/data/input/Juan_Cantelejo/DICOMDIR",
+		"/C/Users/Nick/Desktop/tibia_UI/Juan Cantelejo/test.mat",
+		"/C/Users/Nick/Desktop/Tibia/code/dicom/__init__.py",
+		"/C/Users/Nick/Documents/notes.txt",
+		"/C/Users/Nick/Documents/GitHub/Radiator-Labs/Gateway/build/release/dpdsrv.py",
+		"/C/Users/Nick/Desktop/software_eng.txt",
+		"/C/Users/Nick/Documents/Arduino/tachometer_2/tachometer_2.ino",
+		"/C/Users/Nick/Documents/GitHub/Radiator-Labs/Gateway/custom_devices/radiator_node.py",
+		"/C/Users/Nick/Desktop/dynamometer/gui/dashboard/dashboard.pde",
+		"/C/Users/Nick/Documents/GitHub/Radiator-Labs/Gateway/make.py",
+		"/C/Users/Nick/Dropbox/radiator-labs-data/download_channel.py",
+		"/C/Users/Nick/Dropbox/radiator-labs-data/download_channel-tarrytown.py",
+		"/C/Users/Nick/Dropbox/radiator-labs-data/tarrytown/radiator_temperature/node_001-radiator_temperature.csv",
+		"/C/Users/Nick/Documents/GitHub/Radiator-Labs/Gateway/custom_devices/timer.py",
+		"/C/Users/Nick/Documents/GitHub/Radiator-Labs/Gateway/conf/tarrytown/tarrytown.yml",
+		"/C/Users/Nick/Documents/GitHub/Radiator-Labs/Gateway/conf/test/test.yml",
+		"/C/Users/Nick/Documents/GitHub/Radiator-Labs/README.md",
+		"/C/Users/Nick/Documents/GitHub/Radiator-Labs/tarrytown/tarrytown.yml",
+		"/C/Users/Nick/Documents/GitHub/Radiator-Labs/Gateway/conf/tarrytown.yml",
+		"/C/Users/Nick/Documents/GitHub/Radiator-Labs/tarrytown/custom_devices/radiator_node.py",
+		"/C/Users/Nick/Documents/GitHub/Radiator-Labs/tarrytown/custom_devices/timer.py",
+		"/C/Users/Nick/Documents/Processing/tachometer_2/tachometer_2013022022102.csv",
+		"/C/Users/Nick/Documents/Processing/tachometer_2/tachometer_2013022020059.csv",
+		"/C/Users/Nick/Desktop/processing-2.0b7-windows32/processing-2.0b7/test2.csv",
+		"/C/Users/Nick/Desktop/processing-2.0b7-windows32/processing-2.0b7/test1.csv",
+		"/C/Users/Nick/Dropbox/radiator-labs-data/download_fan.py",
+		"/C/Users/Nick/Documents/Processing/tachometer_2/tachometer_2013022175705.csv",
+		"/C/Users/Nick/Documents/Processing/tachometer_2/tachometer_2013022022143.csv",
+		"/C/Users/Nick/Documents/Processing/tachometer_2/tachometer_2013022024552.csv",
+		"/C/Users/Nick/Documents/Processing/tachometer_2/tachometer_2013022031323.csv",
+		"/C/Users/Nick/Documents/Processing/tachometer_2/tachometer_2013022170639.csv",
+		"/C/Users/Nick/Documents/Processing/tachometer_2/tachometer_2013022171343.csv",
+		"/C/Users/Nick/Documents/Processing/tachometer_2/tachometer_2013022175535.csv",
+		"/C/Users/Nick/Dropbox/radiator-labs-data/download_weather.py",
+		"/C/Users/Nick/Dropbox/radiator-labs-data/download_radiator_temperature.py",
+		"/C/Users/Nick/Dropbox/radiator-labs-data/download_room_temperature.py",
+		"/C/Users/Nick/Desktop/processing-2.0b7-windows32/processing-2.0b7/test.csv",
+		"/C/Users/Nick/Documents/GitHub/Radiator-Labs/.gitignore",
+		"/C/Users/Nick/Dropbox/radiator-labs-data/fan_1_en/node_1-fan_1_en.csv",
+		"/C/Users/Nick/Dropbox/radiator-labs-data/weather_temperature.csv",
+		"/C/Users/Nick/Dropbox/radiator-labs-data/fan_1_en/node_30-fan_1_en.csv",
+		"/C/Users/Nick/Documents/GitHub/Radiator-Labs/Scripts/py/tools/file.py",
+		"/C/Users/Nick/Documents/GitHub/Radiator-Labs/Scripts/py/devices/devices.py",
+		"/C/Users/Nick/Documents/GitHub/Radiator-Labs/Scripts/py/tools/date.py",
+		"/C/Users/Nick/Documents/GitHub/Radiator-Labs/Scripts/py/clean.py",
+		"/C/Users/Nick/Documents/GitHub/Radiator-Labs/Scripts/py/csv/node_1-room_temperature.csv",
+		"/C/Users/Nick/Desktop/app.hex",
+		"/C/Users/Nick/Dropbox/radiator-labs-data/merged/node_1-room_temperature.csv",
+		"/C/Users/Nick/Dropbox/radiator-labs-data/merged/node_62-room_temperature.csv",
+		"/C/Users/Nick/Dropbox/radiator-labs-data/node_inventory.csv",
+		"/C/Users/Nick/Documents/GitHub/Radiator-Labs/Scripts/py/merge.py",
+		"/C/Users/Nick/Documents/GitHub/Radiator-Labs/Scripts/py/convert/merge.py",
+		"/C/Users/Nick/Documents/GitHub/Radiator-Labs/Scripts/py/download_room_temperature.py",
+		"/C/Users/Nick/Documents/GitHub/Radiator-Labs/Scripts/py/download_weather.py",
+		"/C/Users/Nick/Dropbox/radiator-labs-data/room_temperature/node_1-room_temperature.csv",
+		"/C/Users/Nick/Dropbox/Radiator/2012 Pilot/Claremont/Phase 1/Device Data/Processed/node_1/room_temperature.txt",
+		"/C/Users/Nick/Dropbox/radiator-labs-data/room_temperature/node_2-room_temperature.csv",
+		"/C/Users/Nick/Documents/GitHub/Radiator-Labs/Scripts/py/tools/data.py",
+		"/C/Users/Nick/Documents/GitHub/Radiator-Labs/Scripts/py/mean_day_temp.py",
+		"/C/Users/Nick/Documents/GitHub/Radiator-Labs/Scripts/py/csv/0001/node_1-room_temperature.csv",
+		"/C/Users/Nick/Documents/GitHub/Radiator-Labs/Scripts/py/log.txt",
+		"/C/Users/Nick/Documents/GitHub/Radiator-Labs/Scripts/py/toJson.py",
+		"/C/Users/Nick/Documents/GitHub/Radiator-Labs/Scripts/py/data/weather/weather_temperature.csv",
+		"/C/Users/Nick/Documents/GitHub/Radiator-Labs/Scripts/py/box_plotter_radiators.py",
+		"/C/Users/Nick/Documents/GitHub/Radiator-Labs/Scripts/py/data/idigi/2013/1/12/0001/node_1/room_temperature.xml",
+		"/C/Users/Nick/Documents/GitHub/Radiator-Labs/Scripts/py/channels/channels.py",
+		"/C/Users/Nick/Documents/GitHub/Radiator-Labs/Scripts/py/analyzer.py",
+		"/C/Users/Nick/Downloads/Untitled spreadsheet - Sheet1.csv",
+		"/C/Users/Nick/Documents/GitHub/Radiator-Labs/Scripts/py/csv/0001/node_59/room_temperature.csv",
+		"/C/Users/Nick/Documents/GitHub/Radiator-Labs/Scripts/py/csv/0001/node_3/room_temperature.csv",
+		"/C/Users/Nick/Documents/GitHub/Radiator-Labs/Scripts/py/csv/0001/node_1/room_temperature.csv",
+		"/C/Users/Nick/Documents/GitHub/Radiator-Labs/Scripts/py/data/idigi/2013/1/7/0001/node_1/room_temperature.xml",
+		"/C/Users/Nick/Documents/GitHub/Radiator-Labs/Scripts/py/data/idigi/2013/1/1/0001/node_1/room_temperature.xml",
+		"/C/Users/Nick/Documents/GitHub/Radiator-Labs/Scripts/py/channels/room_temperature.py",
+		"/C/Users/Nick/Documents/GitHub/Radiator-Labs/Scripts/py/getWeather.py",
+		"/C/Users/Nick/Desktop/Raw/json/node_1.json",
+		"/C/Users/Nick/Documents/GitHub/Radiator-Labs/Scripts/py/daily.py",
+		"/C/Users/Nick/Documents/GitHub/Radiator-Labs/Scripts/py/aggregate.py",
+		"/C/Users/Nick/Documents/GitHub/Radiator-Labs/Scripts/py/box_plotter.py",
+		"/C/Users/Nick/Documents/GitHub/Radiator-Labs/Scripts/py/convert/process.py",
+		"/C/Users/Nick/Dropbox/Radiator/2012 Pilot/Claremont/Phase 2/Device Data/2013/1/6/node_1/uniform.csv",
+		"/C/Users/Nick/Documents/GitHub/Radiator-Labs/Scripts/py/data/weather/log_0001.json",
+		"/C/Users/Nick/Documents/GitHub/Radiator-Labs/Scripts/py/data/idigi/0001/node_4/room_temperature.json",
+		"/C/Users/Nick/Documents/GitHub/Radiator-Labs/Scripts/py/data/idigi/0001/node_10/room_temperature.json",
+		"/C/Users/Nick/Documents/GitHub/Radiator-Labs/Scripts/py/data/idigi/0001/node_7/room_temperature.json",
+		"/C/Users/Nick/Documents/GitHub/Radiator-Labs/Scripts/py/data/test/node_1/room_temperature.json",
+		"/C/Users/Nick/Documents/GitHub/Radiator-Labs/Scripts/py/plotters/box.py",
+		"/C/Users/Nick/Documents/GitHub/Radiator-Labs/Scripts/py/data/idigi/0001/node_9/room_temperature.json",
+		"/C/Users/Nick/Documents/GitHub/Radiator-Labs/Scripts/py/data/idigi/0001/node_1/room_temperature.json",
+		"/C/Users/Nick/Documents/GitHub/Radiator-Labs/Scripts/py/data/idigi/0001/node_92/room_temperature.json",
+		"/C/Users/Nick/Desktop/Raw/data/node_6.json",
+		"/C/Users/Nick/Desktop/Raw/json/node_3.json",
+		"/C/Users/Nick/Desktop/Raw/data/node_1.json",
+		"/C/Users/Nick/Desktop/Raw/data/node_2.json",
+		"/C/Users/Nick/Desktop/Raw/data/node_35.json",
+		"/C/Users/Nick/Documents/GitHub/Radiator-Labs/Scripts/py/convert/conv.py",
+		"/C/Users/Nick/Documents/GitHub/Radiator-Labs/Scripts/py/convert/parse.py",
+		"/C/Users/Nick/Desktop/Raw/test/json/node_1.json",
+		"/C/Users/Nick/Documents/GitHub/Radiator-Labs/Scripts/py/convert/parse2.py",
+		"/C/Users/Nick/Desktop/Raw/converted/edp_sample005207.xml",
+		"/C/Users/Nick/Documents/GitHub/Radiator-Labs/Scripts/py/fan_1_en.py",
+		"/C/Users/Nick/Documents/GitHub/Radiator-Labs/Scripts/py/upload/upload.py",
+		"/C/Users/Nick/Documents/GitHub/Radiator-Labs/Scripts/py/tools/data.pyc",
+		"/C/Users/Nick/Desktop/Raw/json/node_29.json",
+		"/C/Users/Nick/Desktop/Raw/json/node_12.json",
+		"/C/Users/Nick/Desktop/Raw/json/node_6.json",
+		"/C/Users/Nick/Desktop/Raw/json/node_82.json",
+		"/C/Users/Nick/Documents/GitHub/Radiator-Labs/Scripts/py/upload/conv.py",
+		"/C/Users/Nick/Desktop/Raw/Processed/edp_sample00.xml",
+		"/C/Users/Nick/Documents/GitHub/Radiator-Labs/Scripts/py/channels/radiator_temperature.py",
+		"/C/Users/Nick/Documents/GitHub/Radiator-Labs/Scripts/py/processWeather.py",
+		"/C/Users/Nick/Documents/GitHub/Radiator-Labs/Scripts/py/convert/json/node_1.json",
+		"/C/Users/Nick/Documents/GitHub/Radiator-Labs/Scripts/py/convert/json/node_67.json",
+		"/C/Users/Nick/Documents/GitHub/Radiator-Labs/Scripts/py/convert/json/node_94.json",
+		"/C/Users/Nick/Documents/GitHub/Radiator-Labs/Scripts/py/upload/mega.xml",
+		"/C/Users/Nick/Documents/GitHub/Radiator-Labs/Scripts/py/lists_2.txt",
+		"/C/Users/Nick/Documents/GitHub/Radiator-Labs/Scripts/py/lists_1.txt",
+		"/C/Users/Nick/Documents/GitHub/Radiator-Labs/Scripts/py/upload/create_stream.py",
+		"/C/Users/Nick/Documents/GitHub/Radiator-Labs/Scripts/py/weather/weather.py",
+		"/C/Users/Nick/Documents/GitHub/Radiator-Labs/Scripts/py/data/weather/historical_0001_20121206.xml",
+		"/C/Users/Nick/Documents/GitHub/Radiator-Labs/Scripts/py/data/weather/historical_0001_20121201.xml",
+		"/C/Users/Nick/Documents/GitHub/Radiator-Labs/Scripts/py/data/weather/weather/log_0001.json",
+		"/C/Users/Nick/Documents/GitHub/Radiator-Labs/Scripts/py/data/idigi/0001/1/fan_1_en.json"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"pixel_data",
+			"com_port",
+			"datadir",
+			"dicomdir",
+			" ",
+			"rev",
+			"betwe",
+			"ensure",
+			"device",
+			"rate",
+			"SETTING_TICK_RATE",
+			"frequency",
+			"state",
+			"directory",
+			"directory = \"%s/%s\" %(root,channel)\n",
+			"directory",
+			"./",
+			"filetools",
+			"devices",
+			"0001",
+			"device",
+			"location",
+			"device",
+			"devices",
+			"timezone",
+			"get_unix",
+			"device",
+			"getLogFilename",
+			"get_log_filename",
+			"process_channel_data",
+			"download",
+			"loop",
+			"date2",
+			"date1",
+			"date_c",
+			"date_e",
+			"date_s",
+			"year_e",
+			"year_",
+			"day_e",
+			"month_e",
+			"year_s",
+			"day_s",
+			"day_",
+			"month_s",
+			"interval",
+			"datetools",
+			"channel",
+			"device",
+			"date_e",
+			"date_s",
+			"year_e",
+			"day_e",
+			"month_e",
+			"year_s",
+			"day_s",
+			"month_s",
+			"entries",
+			"print",
+			"loops += 1\n        ",
+			"log",
+			"with",
+			"process_historical_data",
+			"utcdata",
+			"\"date\"",
+			"201301",
+			"ensure",
+			"201212",
+			"bplot['boxes']",
+			"bplot",
+			"xbp",
+			"format_date",
+			"bbox",
+			"med",
+			"pylab",
+			"201212",
+			"201211",
+			"201212",
+			"xbp",
+			"this_date",
+			"201212",
+			"print",
+			"normalized_date",
+			"formatted_data",
+			"time.mktime",
+			"SZ",
+			"lename",
+			"source_dir",
+			"+",
+			"dest_dir",
+			"f.open",
+			"        \n",
+			"f.open",
+			"dest",
+			"datatools",
+			"-9999",
+			"tempm",
+			"average",
+			"{",
+			"find_log",
+			"find_log\\",
+			"find_log",
+			"normaliz",
+			"start",
+			"\"interval\": 5",
+			"get_log",
+			"find_log",
+			"daily",
+			"\\",
+			"/",
+			"download",
+			"json",
+			"os.path",
+			"os",
+			"print",
+			"gs",
+			"_plot_line",
+			"ax3",
+			"ax6",
+			"ax1",
+			"idigi_directory",
+			"weather_directory",
+			"get_historical_filename",
+			"__process_h",
+			"__download",
+			"__get_historical_filename",
+			"__get_log_filename",
+			"__"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "code/dicom/display.py",
+					"settings":
+					{
+						"buffer_size": 1,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "code/dicom/load.py",
+					"settings":
+					{
+						"buffer_size": 1787,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								53,
+								53
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 34.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 118.0
+	},
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true
+}

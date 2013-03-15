@@ -2,11 +2,14 @@ import dicom
 import errno
 import os
 import subprocess
-
-dicomdir = os.path.join("C:","\Users","Nick","Desktop","Tibia","data","input","Juan_Cantelejo")
+import matplotlib.pyplot as pyplot
 
 # dcmdjpeg options dcmfile-in dcmfile-out
 dcmdjpeg = os.path.join("C:","\dcmtk-bin","dcmjpeg","apps","Debug","dcmdjpeg.exe")
+
+patient = "Juan_Cantelejo"
+dataDir = os.path.join("C:","\Users","Nick","Desktop","Tibia","data")
+patientDir = os.path.join(dataDir,"input",patient)
 
 def make_sure_path_exists(path):
     try:
@@ -15,27 +18,37 @@ def make_sure_path_exists(path):
         if exception.errno != errno.EEXIST:
             raise
 
-DICOM = os.path.join(dicomdir, "DICOMDIR")
-ds = dicom.read_file(DICOM)
+dirOut = os.path.join(dataDir, "output", "decompressed")
 
-dirOut = os.path.join(dicomdir, "decompressed")
+dicom_data = list()
 
-pixel_data = list()
-for record in ds.DirectoryRecordSequence:
-    if record.DirectoryRecordType == "IMAGE":
-        # Extract the relative path to the DICOM file
-        pathIn = os.path.join(dicomdir, *record.ReferencedFileID)
-#        print record.ReferencedFileID
-        make_sure_path_exists(os.path.join(dicomdir, "decompressed", *record.ReferencedFileID[0:-1]))
-        pathOut = os.path.join(dicomdir, "decompressed", *record.ReferencedFileID)
+dicomDir = os.path.join(patientDir, "DICOMDIR")
+ds = dicom.read_file(dicomDir)
 
-        if 1:
-	        # Decompress JPEG files
-	        subprocess.call([dcmdjpeg, pathIn, pathOut])
-	        
-	        dcm = dicom.read_file(pathOut)
+# Search for relative image files
+# Need to patch to read DICOMDIR
+# https://code.google.com/p/pydicom/issues/detail?id=7
 
-	        # Now get your image data
-	        pixel_data.append(dcm.pixel_array)
+if 1:
+    for record in ds.DirectoryRecordSequence:
+        if record.DirectoryRecordType == "IMAGE":
+            if 67283585 > int(record.ReferencedFileID[-1]) > 67283366:
+            # Temporary hack to extract knee files
+                # Extract the relative path to the DICOM file
+                pathIn = os.path.join(patientDir, *record.ReferencedFileID)
+                # Decompress JPEG files
+                make_sure_path_exists(os.path.join(patientDir, "decompressed", *record.ReferencedFileID[0:-1]))
+                pathOut = os.path.join(patientDir, "decompressed", *record.ReferencedFileID)
+                subprocess.call([dcmdjpeg, pathIn, pathOut])
+                # Now get your image data
+                dcm = dicom.read_file(pathOut)
+                dicom_data.append(dcm.pixel_array)
 
-print pixel_data
+    # Display data
+    for slice_data in dicom_data:
+        print slice_data
+        print type(slice_data)
+        pyplot.imshow(slice_data)
+        pyplot.show()
+
+
