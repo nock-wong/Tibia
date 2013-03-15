@@ -62,11 +62,15 @@ Python module for accessing DICOM data.
 </p>
 <h4>Getting started</h4>
 <ol>
-	<li></li>
+	<li>Download and run pydicom installer.</li>
+	<li>Patch pydicom  to read DICOMDIR.</li>
+		<ol>
+			<li></li>
+		</ol>
 </ol>
 <h4>Link(s)</h4>
 <ul>
-	<li><a href="https://code.google.com/p/pydicom/">pydicom installation</a></li>
+	<li><a href="https://code.google.com/p/pydicom/downloads/detail?name=pydicom-0.9.8.win32.exe&can=2&q=">pydicom Windows installer</a></li>
 </ul>
 
 <h3>dcmtk</h3>
@@ -76,12 +80,13 @@ Python module for accessing DICOM data.
 </p>
 <h4>Getting started</h4>
 <ol>
-	<li></li>
+	<li>Download dcmtk source code.</li>
+	<li>Compile dcmtk code, specifically dcmdjpeg, according to dcmtk installation instructions.</li>
 </ol>
 <h4>Link(s)</h4>
 <ul>
-	<li><a href="http://dicom.offis.de/dcmtk.php.en">dcmtk</a></li>
-	<li><a href="http://support.dcmtk.org/docs/file_install.html">dcmtk installation</a></li>
+	<li><a href="http://dicom.offis.de/dcmtk.php.en">dcmtk source code files</a></li>
+	<li><a href="http://support.dcmtk.org/docs/file_install.html">dcmtk installation instructions</a></li>
 </ul>
 
 <h3>Amazon Web Services</h3>
