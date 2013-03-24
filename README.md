@@ -63,7 +63,7 @@ Python module for accessing DICOM data.
 <h4>Getting started</h4>
 <ol>
 	<li>Download and run pydicom installer.</li>
-	<li>Patch pydicom  to read DICOMDIR.</li>
+	<li>Patch pydicom to read DICOMDIR.</li>
 		<ol>
 			<li></li>
 		</ol>
@@ -92,4 +92,3 @@ Python module for accessing DICOM data.
 <h3>Amazon Web Services</h3>
 
 <h2>Deployment</h2>
-
