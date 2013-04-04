@@ -3,6 +3,9 @@ import errno
 import os
 import subprocess
 import matplotlib.pyplot as pyplot
+import time
+
+pyplot.ion()
 
 print "running load.py \n"
 
@@ -167,9 +170,22 @@ for key, images in dicom['series'][selectedSeries]['images'].iteritems():
     dcm = pydicom.read_file(pathOut)
     imageData[number] = dcm.pixel_array
 
-# Plot series' images
-for key, sliceData in imageData.iteritems():
-    print sliceData
-    print type(sliceData)
+
+
+print "Select slide out of {0}".format(len(imageData))
+print ">>>",
+command = raw_input()
+while str(command) != "q":
+    sliceData = imageData[int(command)]
     pyplot.imshow(sliceData)
     pyplot.show()
+
+if 0:
+    # Plot series' images
+    pyplot.show()
+    for key, sliceData in imageData.iteritems():
+        print sliceData
+        pyplot.imshow(sliceData)
+        time.sleep(10)
+        #print "b"
+        #pyplot.close()
