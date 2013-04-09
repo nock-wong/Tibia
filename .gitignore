@@ -167,3 +167,6 @@ pip-log.txt
 #############
 decompressed/
 output/
+
+media/
+static/

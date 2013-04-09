@@ -4,6 +4,8 @@ import os
 import subprocess
 import matplotlib.pyplot as pyplot
 import time
+from PIL import Image
+import numpy
 
 pyplot.ion()
 
@@ -19,6 +21,19 @@ patient = "Juan_Cantelejo"
 
 dataDir = os.path.join("C:","\Users","Nick","Dropbox","Nick Wong Thesis","Software","data")
 patientDir = os.path.join(dataDir,"input",patient)
+
+def extract_image(pathIn):
+    dcmdjpeg = os.path.join("C:","\dcmtk-bin","dcmjpeg","apps","Debug","dcmdjpeg.exe")
+    pathOut = pathIn + "_temp"
+    subprocess.call([dcmdjpeg, pathIn, pathOut])
+    # Now get your image data
+    dcm = pydicom.read_file(pathOut)
+    # Scale image data to uint8
+    imageData[number] = dcm.pixel_array*float(255)/65535
+    # Convert image data to image file
+    im = Image.fromarray(imageData[number])
+    im.save(pathIn+".tiff","tiff")
+    os.remove(pathOut)
 
 def make_sure_path_exists(path):
     try:
@@ -162,23 +177,35 @@ for key, images in dicom['series'][selectedSeries]['images'].iteritems():
     number = images['instanceNumber']
     # Extract the relative path to the DICOM file
     pathIn = os.path.join(patientDir, *fileID)
-    # Save and decompress JPEG files
-    make_sure_path_exists(os.path.join(dataDir, "output", "decompressed", *fileID[0:-1]))
-    pathOut = os.path.join(dataDir, "output", "decompressed", *fileID)
-    subprocess.call([dcmdjpeg, pathIn, pathOut])
-    # Now get your image data
-    dcm = pydicom.read_file(pathOut)
-    imageData[number] = dcm.pixel_array
+    extract_image(pathIn)
+
+    if 0:
+        # Save and decompress JPEG files
+        make_sure_path_exists(os.path.join(dataDir, "output", "decompressed", *fileID[0:-1]))
+        pathOut = os.path.join(dataDir, "output", "decompressed", *fileID)
+        subprocess.call([dcmdjpeg, pathIn, pathOut])
+        # Now get your image data
+        dcm = pydicom.read_file(pathOut)
+        imageData[number] = dcm.pixel_array*float(255)/65535
+        imageDataSize = (imageData[number].shape[0],imageData[number].shape[1])
+        # Convert image data to image file
+        print type(imageDataSize)
+        print type(imageData[number][0][0])
+        print pathOut
+            
+        
+        im = Image.fromarray(imageData[number])
+        im.save(pathOut+".tiff","tiff")
 
 
-
-print "Select slide out of {0}".format(len(imageData))
-print ">>>",
-command = raw_input()
-while str(command) != "q":
-    sliceData = imageData[int(command)]
-    pyplot.imshow(sliceData)
-    pyplot.show()
+if 0:
+    print "Select slide out of {0}".format(len(imageData))
+    print ">>>",
+    command = raw_input()
+    while str(command) != "q":
+        sliceData = imageData[int(command)]
+        pyplot.imshow(sliceData)
+        pyplot.show()
 
 if 0:
     # Plot series' images

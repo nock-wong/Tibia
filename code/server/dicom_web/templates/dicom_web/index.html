@@ -1,0 +1,21 @@
+<form action="{% url 'dicom:upload' %}" method="post"
+{% if form.is_multipart %}
+    enctype="multipart/form-data"
+{% endif %}
+>
+{% csrf_token %}
+{{ form.filedata }}
+<input type="submit" value="Submit" />
+</form>
+
+{% if dicom_list %}
+    <form action="{% url 'dicom:view_dicom' %}" method="get">
+    {% for dicom in dicom_list %}
+    <input type="radio" name="dicom" id="choice{{ forloop.counter }}" value="{{ dicom.base_dir }}" />
+    <label for="choice{{ forloop.counter }}">{{ dicom.base_dir }}</label><br />
+    {% endfor %}
+    <input type="submit" value="View" />
+    </form>
+{% else %}
+    <p>No dicoms are available.</p>
+{% endif %}
