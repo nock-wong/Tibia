@@ -15,6 +15,9 @@ import numpy
 
 from PIL import Image as PIL_Image
 
+import os
+import errno
+
 class UploadFileForm(forms.Form):
     filedata = forms.FileField()
 
@@ -57,10 +60,15 @@ def view_series(request, dicom_id, series_id, image_index):
     fileID = fileID.replace("[","")
     fileID = fileID.replace("]","")
     fileID = fileID.split(',')
-    imageDir = os.path.join(settings.MEDIA_ROOT, base_dir, *fileID)
-    if (os.path.exists(imageDir + ".gif") == False):
-        extract_image(imageDir)
-    imageUrl = os.path.join(settings.MEDIA_URL, base_dir, *fileID) + ".gif"
+
+    sourceImageFilename = os.path.join(settings.MEDIA_ROOT, base_dir, *fileID)
+    destinationImageDir = os.path.join(settings.MEDIA_ROOT, base_dir, 'images', str(series.number), 'axial')
+    make_sure_path_exists(destinationImageDir)
+    destinationImageFilename = os.path.join(destinationImageDir, fileID[-1]) + ".gif"
+
+    if (os.path.exists(destinationImageFilename) == False):
+        extract_image(sourceImageFilename, destinationImageFilename)
+    imageUrl = os.path.join(settings.MEDIA_URL, base_dir, 'images', str(series.number), 'axial', fileID[-1]) + ".gif"
 
     context = {
         'dicom': dicom,
@@ -74,18 +82,26 @@ def view_series(request, dicom_id, series_id, image_index):
 
     return render(request, "dicom_web/view_series.html", context)
 
-def extract_image(pathIn):
+
+def make_sure_path_exists(path):
+    try:
+        os.makedirs(path)
+    except OSError as exception:
+        if exception.errno != errno.EEXIST:
+            raise
+
+def extract_image(pathIn, pathOut):
     dcmdjpeg = os.path.join("C:","\dcmtk-bin","dcmjpeg","apps","Debug","dcmdjpeg.exe")
     
-    pathOut = pathIn + "_temp"
-    subprocess.call([dcmdjpeg, pathIn, pathOut])
+    pathTemp = pathIn + "_temp"
+    subprocess.call([dcmdjpeg, pathIn, pathTemp])
     # Now get your image data
-    dcm = pydicom.read_file(pathOut)
+    dcm = pydicom.read_file(pathTemp)
     imageData = dcm.pixel_array.astype(numpy.uint32)
     # Save image data to image file
     im = PIL_Image.fromarray(imageData, 'I')
-    im.save(pathIn+".gif")
-    os.remove(pathOut)
+    im.save(pathOut)
+    os.remove(pathTemp)
     
 def upload(request):
     if request.method == 'POST':

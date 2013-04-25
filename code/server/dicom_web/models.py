@@ -58,3 +58,11 @@ class Image(models.Model):
 
     def __unicode__(self):
         return self.instanceNumber
+
+class ProcessedImage(models.Model):
+    series = models.ForeignKey(Series)
+    view = models.CharField(max_length = 20)
+    instanceNumber = models.IntegerField()
+    
+    def __unicode__(self):
+        return self.instanceNumber
