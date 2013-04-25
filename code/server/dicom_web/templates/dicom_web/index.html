@@ -1,3 +1,6 @@
+<a href="/dicom/"><h1>CT-Viewer</h1></a>
+<br>
+
 <form action="{% url 'dicom:upload' %}" method="post"
 {% if form.is_multipart %}
     enctype="multipart/form-data"
@@ -8,14 +11,13 @@
 <input type="submit" value="Submit" />
 </form>
 
+<h2>DICOM collection</h2>
 {% if dicom_list %}
-    <form action="{% url 'dicom:view_dicom' %}" method="get">
+    <ul>
     {% for dicom in dicom_list %}
-    <input type="radio" name="dicom" id="choice{{ forloop.counter }}" value="{{ dicom.base_dir }}" />
-    <label for="choice{{ forloop.counter }}">{{ dicom.base_dir }}</label><br />
+    <li><a href="/dicom/{{ dicom.id }}/">{{ dicom.base_dir }}</a></li>
     {% endfor %}
-    <input type="submit" value="View" />
-    </form>
+    </ul>
 {% else %}
-    <p>No dicoms are available.</p>
+    <p>Upload your first DICOM!</p>
 {% endif %}

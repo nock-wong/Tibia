@@ -20,6 +20,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.admindocs',
     'dicom_web',
+    'imagekit',
 )
 
 MANAGERS = ADMINS

@@ -1,7 +1,52 @@
+<a href="/dicom/"><h1>CT-Viewer</h1></a>
 
-<img src="{{image}}" alt="My image"/>
+<a href="/dicom/{{ dicom.id }}/">{{ dicom.base_dir }}</a> 
+<br>
 
-<form action="{% url 'dicom:view_series' %}" method="get">
-    <input type="submit" value="previous">
-    <input type="submit" value="next">
-</form>
+<a href="/dicom/{{ dicom.id }}/{{ series.id }}/0/">{{ series.description }}</a>
+<br>
+
+<h2>Axial</h2>
+<img src="{{imageUrl}}" alt="CT Scan" height="{{image.rows}}" width="{{image.columns}}">
+<br>
+{% if image.instanceNumber > 1 %}
+    <a href="/dicom/{{ dicom.id }}/{{ series.id }}/{{ previousIndex }}/">Previous</a>
+{% else %}
+    Previous
+{% endif %}
+{{ image.instanceNumber }} / {{imageCount}}
+{% if image.instanceNumber < imageCount %}
+    <a href="/dicom/{{ dicom.id }}/{{ series.id }}/{{ nextIndex }}/">Next</a>
+{% else %}
+    Next
+{% endif %}
+
+<h2>Coronal</h2>
+<img src="{{imageUrl}}" alt="CT Scan" height="{{image.rows}}" width="{{image.columns}}">
+<br>
+{% if image.instanceNumber > 1 %}
+    <a href="/dicom/{{ dicom.id }}/{{ series.id }}/{{ previousIndex }}/">Previous</a>
+{% else %}
+    Previous
+{% endif %}
+{{ image.instanceNumber }} / {{imageCount}}
+{% if image.instanceNumber < imageCount %}
+    <a href="/dicom/{{ dicom.id }}/{{ series.id }}/{{ nextIndex }}/">Next</a>
+{% else %}
+    Next
+{% endif %}
+
+<h2>Sagital</h2>
+<img src="{{imageUrl}}" alt="CT Scan" height="{{image.rows}}" width="{{image.columns}}">
+<br>
+{% if image.instanceNumber > 1 %}
+    <a href="/dicom/{{ dicom.id }}/{{ series.id }}/{{ previousIndex }}/">Previous</a>
+{% else %}
+    Previous
+{% endif %}
+{{ image.instanceNumber }} / {{imageCount}}
+{% if image.instanceNumber < imageCount %}
+    <a href="/dicom/{{ dicom.id }}/{{ series.id }}/{{ nextIndex }}/">Next</a>
+{% else %}
+    Next
+{% endif %}

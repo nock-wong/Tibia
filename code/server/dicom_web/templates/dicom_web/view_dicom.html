@@ -1,11 +1,34 @@
+<a href="/dicom/"><h1>CT-Viewer</h1></a>
+>> <a href="/dicom/{{ dicom.id }}/">{{ dicom.base_dir }}</a>
+
+<br>
+
+<h2>Patient</h2>
+<ul>
+<li>Patient ID: {{ patient.patientId }}</li>
+<li>Name: {{ patient.name }}</li>
+<li>Birthdate: {{ patient.birthdate}}</li>
+<li>Sex: {{ patient.sex }}</li>
+</ul>
+
+<br>
+
+<h2>Study</h2>
+<ul>
+<li>Study ID: {{ study.studyId }}</li>
+<li>Date: {{ study.date }}</li>
+<li>Description: {{ study.description }}</li>
+</ul>
+
+<br>
+
+<h2>Series</h2>
 {% if series_list %}
-    <form action="{% url 'dicom:view_series' %}" method="get">
+    <ul>
     {% for series in series_list %}
-    <input type="radio" name="series" id="choice{{ forloop.counter }}" value="{{ series.description }}" />
-    <label for="choice{{ forloop.counter }}">{{ series.description }}</label><br />
+    <li><a href="/dicom/{{ dicom.id }}/{{ series.id }}/0/">{{ series.description }}</a></li>
     {% endfor %}
-    <input type="submit" value="View" />
-    </form>
+    </ul>
 {% else %}
     <p>No series are available.</p>
 {% endif %}

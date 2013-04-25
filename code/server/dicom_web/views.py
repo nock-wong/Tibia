@@ -11,6 +11,7 @@ import os.path
 import dicom as pydicom
 from dicom_web.models import Dicom, Patient, Study, Series, Image
 import subprocess
+import numpy
 
 from PIL import Image as PIL_Image
 
@@ -25,6 +26,67 @@ def index(request):
     }
     return render(request, "dicom_web/index.html", context)
 
+def view_dicom(request, dicom_id):
+    dicom = Dicom.objects.get(id = dicom_id)
+    patient = Patient.objects.get(dicom = dicom)
+    study = Study.objects.get(patient = patient)
+    series = Series.objects.filter(study = study)
+    context = {
+        'dicom': dicom,
+        'patient': patient,
+        'study': study,
+        'series_list': series
+    }
+    return render(request, "dicom_web/view_dicom.html", context)
+
+def view_series(request, dicom_id, series_id, image_index):
+
+    #series_id = request.GET["series"]
+    dicom = Dicom.objects.get(id = dicom_id)
+    series = Series.objects.get(id = series_id)
+    
+    base_dir = dicom.base_dir
+
+    images = Image.objects.filter(series = series).order_by('instanceNumber')
+
+    image_index = int(image_index)
+    image = images[image_index]
+    fileID = image.fileID
+    fileID = fileID.replace(" ","")
+    fileID = fileID.replace("'","")
+    fileID = fileID.replace("[","")
+    fileID = fileID.replace("]","")
+    fileID = fileID.split(',')
+    imageDir = os.path.join(settings.MEDIA_ROOT, base_dir, *fileID)
+    if (os.path.exists(imageDir + ".gif") == False):
+        extract_image(imageDir)
+    imageUrl = os.path.join(settings.MEDIA_URL, base_dir, *fileID) + ".gif"
+
+    context = {
+        'dicom': dicom,
+        'series': series,
+        'image': image,
+        'nextIndex': image_index+1,
+        'previousIndex': image_index-1,
+        'imageUrl': imageUrl,
+        'imageCount': len(images)
+    }
+
+    return render(request, "dicom_web/view_series.html", context)
+
+def extract_image(pathIn):
+    dcmdjpeg = os.path.join("C:","\dcmtk-bin","dcmjpeg","apps","Debug","dcmdjpeg.exe")
+    
+    pathOut = pathIn + "_temp"
+    subprocess.call([dcmdjpeg, pathIn, pathOut])
+    # Now get your image data
+    dcm = pydicom.read_file(pathOut)
+    imageData = dcm.pixel_array.astype(numpy.uint32)
+    # Save image data to image file
+    im = PIL_Image.fromarray(imageData, 'I')
+    im.save(pathIn+".gif")
+    os.remove(pathOut)
+    
 def upload(request):
     if request.method == 'POST':
         form = UploadFileForm(request.POST, request.FILES)
@@ -33,53 +95,6 @@ def upload(request):
             resp = handle_uploaded_file(filedata)
             return HttpResponseRedirect(reverse("dicom:index"))
     return HttpResponse("fail")
-
-def view_dicom(request):
-    dicomdir = request.GET["dicom"]
-    dicom = Dicom.objects.filter(base_dir = dicomdir)[0]
-    patient = Patient.objects.get(dicom = dicom)
-    study = Study.objects.get(patient = patient)
-    series = Series.objects.filter(study = study)
-    context = {
-        'patient': patient,
-        'study:': study,
-        'series_list': series
-    }
-    return render(request, "dicom_web/view_dicom.html", context)
-
-def view_series(request):
-
-    choice = request.GET["series"]
-
-    series = Series.objects.filter(description = choice)[0]
-    study = series.study
-    patient = study.patient
-    dicom = patient.dicom
-
-    base_dir = dicom.base_dir
-
-    images = Image.objects.filter(series = series).order_by("instanceNumber")
-
-    image = images[0]
-    fileID = image.fileID
-    fileID = fileID.replace(" ","")
-    fileID = fileID.replace("'","")
-    fileID = fileID.replace("[","")
-    fileID = fileID.replace("]","")
-    fileID = fileID.split(',')
-    imageDir = os.path.join(settings.MEDIA_ROOT, base_dir, *fileID)
-    if (os.path.exists(imageDir + ".jpg") == False):
-            extract_image(imageDir)
-    imageUrl = os.path.join(settings.MEDIA_URL, base_dir, *fileID) + ".jpg"
-
-    context = {
-        'image': imageUrl,
-    }
-
-    return render(request, "dicom_web/view_series.html", context)
-
-def view_slide(request):
-    return
 
 def handle_uploaded_file(f):
     datadir = "media"
@@ -95,23 +110,6 @@ def handle_uploaded_file(f):
     unzipdirectory = os.path.join(datadir, basename)
     # Read DICOM into database
     return process_dicom(unzipdirectory)
-
-def extract_image(pathIn):
-    dcmdjpeg = os.path.join("C:","\dcmtk-bin","dcmjpeg","apps","Debug","dcmdjpeg.exe")
-    pathOut = pathIn + "_temp"
-    subprocess.call([dcmdjpeg, pathIn, pathOut])
-    # Now get your image data
-    dcm = pydicom.read_file(pathOut)
-    # Scale image data to uint8
-    imageData = dcm.pixel_array#*float(255)/65535
-    # Convert image data to image file
-    im = PIL_Image.fromarray(imageData, "L")
-    im.save(pathIn+".tiff")
-    im = PIL_Image.open(pathIn+".tiff")
-    im.save(pathIn+".jpg")
-    os.remove(pathOut)
-    #os.remove(pathIn+".tiff")
-
 
 def process_dicom(d):
     dicomdirPath = os.path.join(d, "DICOMDIR")

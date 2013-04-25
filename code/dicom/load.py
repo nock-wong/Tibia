@@ -179,23 +179,23 @@ for key, images in dicom['series'][selectedSeries]['images'].iteritems():
     pathIn = os.path.join(patientDir, *fileID)
     extract_image(pathIn)
 
-    if 0:
+    if 1:
         # Save and decompress JPEG files
         make_sure_path_exists(os.path.join(dataDir, "output", "decompressed", *fileID[0:-1]))
         pathOut = os.path.join(dataDir, "output", "decompressed", *fileID)
         subprocess.call([dcmdjpeg, pathIn, pathOut])
         # Now get your image data
         dcm = pydicom.read_file(pathOut)
-        imageData[number] = dcm.pixel_array*float(255)/65535
-        imageDataSize = (imageData[number].shape[0],imageData[number].shape[1])
-        # Convert image data to image file
-        print type(imageDataSize)
+        imageData[number] = dcm.pixel_array.astype(numpy.uint32)
+        #imageData[number] = (dcm.pixel_array.astype(float)*float(255)/65535).astype(numpy.uint8)
         print type(imageData[number][0][0])
-        print pathOut
-            
-        
-        im = Image.fromarray(imageData[number])
-        im.save(pathOut+".tiff","tiff")
+        print imageData[number]        
+                
+        # Convert image data to image file
+        im = Image.fromarray(imageData[number], 'I')
+        im.save(pathOut+".gif")
+        #im = Image.open(pathIn+".tiff")
+        #im.save(pathIn+".bmp")
 
 
 if 0:
