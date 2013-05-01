@@ -22,6 +22,7 @@ patient = "Juan_Cantelejo"
 dataDir = os.path.join("C:","\Users","Nick","Dropbox","Nick Wong Thesis","Software","data")
 patientDir = os.path.join(dataDir,"input",patient)
 
+
 def extract_image(pathIn):
     dcmdjpeg = os.path.join("C:","\dcmtk-bin","dcmjpeg","apps","Debug","dcmdjpeg.exe")
     pathOut = pathIn + "_temp"
@@ -41,6 +42,71 @@ def make_sure_path_exists(path):
     except OSError as exception:
         if exception.errno != errno.EEXIST:
             raise
+
+# Runs dcmtk's dcmdjpeg to decompress jpeg file
+# arguments:
+#   sourcePath - path of souce jpeg file
+#   destPath - path of destination jpeg file
+def dcmdjpeg(sourcePath, destPath):
+    dcmdjpeg = os.path.join("C:","\dcmtk-bin","dcmjpeg","apps","Debug","dcmdjpeg.exe")
+    subprocess.call([dcmdjpeg, sourcePath, destPath])
+
+def decompress_images (series, patientDir):
+    imageData = {}
+    images = dicom['series'][selectedSeries]['images']
+    dirOut = os.path.join(dataDir, "output", "decompressed")
+    make_sure_path_exists(dirOut)
+    # Extract data from DICOM images files
+    for key, images in images.iteritems():
+        fileID = images['fileID']
+        number = images['instanceNumber']
+        # Extract the relative path to the DICOM file
+        pathIn = os.path.join(patientDir, *fileID)
+        # Save and decompress JPEG files
+        make_sure_path_exists(os.path.join(dirOut, *fileID[0:-1]))
+        pathOut = os.path.join(dataDir, "output", "decompressed", *fileID)
+        dcmdjpeg(pathIn, pathOut)
+        # Now get your image data
+        dcm = pydicom.read_file(pathOut)
+        imageData[number] = dcm.pixel_array.astype(numpy.uint32)
+
+        #imageData[number] = (dcm.pixel_array.astype(float)*float(255)/65535).astype(numpy.uint8)
+        print imageData[number]   
+        print imageData[number].shape
+
+        if 0:
+            # Now get your image data
+            dcm = pydicom.read_file(pathOut)
+            imageData[number] = dcm.pixel_array.astype(numpy.uint32)
+    
+            #imageData[number] = (dcm.pixel_array.astype(float)*float(255)/65535).astype(numpy.uint8)
+            print imageData[number]        
+                    
+            # Convert image data to image file
+            im = Image.fromarray(imageData[number], 'I')
+            im.save(pathOut+".gif")
+            #im = Image.open(pathIn+".tiff")
+            #im.save(pathIn+".bmp")
+    return dirOut
+   
+def create_3D_grid (series, patientDir):
+    images = dicom['series'][selectedSeries]['images']
+    rows = images[0]['rows']        
+    columns = images[0]['columns']
+    slices = len(images)
+    imageData = numpy.empty(rows, columns, slices, )    
+    # Extract data from DICOM images files
+    for key, images in images.iteritems():
+        fileID = images['fileID']
+        number = images['instanceNumber']
+        pathOut = os.path.join(dataDir, "output", "decompressed", *fileID)
+        dcm = pydicom.read_file(pathOut)
+        imageData[number] = dcm.pixel_array.astype(numpy.uint32)
+        print imageData[number]        
+    return 
+    
+    
+    
 
 dirOut = os.path.join(dataDir, "output", "decompressed")
 
@@ -92,10 +158,10 @@ dicom['series'] = {}
 print "Reading DICOMDIR... \n"
 
 currentSeries = 0
+
 for record in ds.DirectoryRecordSequence:
-    #print record
-    #raw_input()
-   
+
+  
     if record.DirectoryRecordType == 'PATIENT':
         patient = {}
         patient['id'] = record.PatientID
@@ -114,7 +180,8 @@ for record in ds.DirectoryRecordSequence:
         study['id'] = record.StudyID
         dicom['study'] = study
     
-    if record.DirectoryRecordType == 'SERIES':
+    if record.DirectoryRecordType == 'SERIES':       
+            
         series = {}
         series['date'] = record.SeriesDate
         series['time'] = record.SeriesTime
@@ -131,6 +198,9 @@ for record in ds.DirectoryRecordSequence:
         dicom['series'][currentSeries]['images'] = {}
      
     if record.DirectoryRecordType == 'IMAGE':
+    
+        print record    
+    
         image = {}
         image['fileID'] = record.ReferencedFileID
         image['pixelSpacing'] = record.PixelSpacing
@@ -171,22 +241,28 @@ print ""
 
 # Process series
 print "Processing series..."
-imageData = {}
-for key, images in dicom['series'][selectedSeries]['images'].iteritems():
-    fileID = images['fileID']
-    number = images['instanceNumber']
-    # Extract the relative path to the DICOM file
-    pathIn = os.path.join(patientDir, *fileID)
-    extract_image(pathIn)
+decompress_images (selectedSeries, patientDir)
 
-    if 1:
+
+
+if 0:
+    imageData = {}
+    for key, images in dicom['series'][selectedSeries]['images'].iteritems():
+        fileID = images['fileID']
+        number = images['instanceNumber']
+        # Extract the relative path to the DICOM file
+        pathIn = os.path.join(patientDir, *fileID)
+        extract_image(pathIn)
+        
         # Save and decompress JPEG files
         make_sure_path_exists(os.path.join(dataDir, "output", "decompressed", *fileID[0:-1]))
         pathOut = os.path.join(dataDir, "output", "decompressed", *fileID)
-        subprocess.call([dcmdjpeg, pathIn, pathOut])
+        dcmdjpeg(pathIn, pathOut)
+        
         # Now get your image data
         dcm = pydicom.read_file(pathOut)
         imageData[number] = dcm.pixel_array.astype(numpy.uint32)
+    
         #imageData[number] = (dcm.pixel_array.astype(float)*float(255)/65535).astype(numpy.uint8)
         print type(imageData[number][0][0])
         print imageData[number]        
@@ -216,3 +292,5 @@ if 0:
         time.sleep(10)
         #print "b"
         #pyplot.close()
+        
+        

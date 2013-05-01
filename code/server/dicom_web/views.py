@@ -83,6 +83,15 @@ def view_series(request, dicom_id, series_id, image_index):
     return render(request, "dicom_web/view_series.html", context)
 
 
+# Extract series image data into numpy
+def create_grid_data (dicom_id, series_id):
+    dicom = Dicom.objects.get(id = dicom_id)
+    series = Series.objects.get(id = series_id)
+    base_dir = dicom.base_dir
+    images = Image.objects.filter(series = series).order_by('instanceNumber')
+
+
+
 def make_sure_path_exists(path):
     try:
         os.makedirs(path)
@@ -102,6 +111,34 @@ def extract_image(pathIn, pathOut):
     im = PIL_Image.fromarray(imageData, 'I')
     im.save(pathOut)
     os.remove(pathTemp)
+
+def decompress_image (pathIn, pathOut):
+    dcmdjpeg = os.path.join("C:","\dcmtk-bin","dcmjpeg","apps","Debug","dcmdjpeg.exe")
+    subprocess.call([dcmdjpeg, pathIn, pathOut])
+    
+def decompress_images (dicom_id, series_id):
+    dicom = Dicom.objects.get(id = dicom_id)
+    series = Series.objects.get(id = series_id)
+    base_dir = dicom.base_dir
+
+    images = Image.objects.filter(series = series).order_by('instanceNumber')
+
+    for image in images:
+        image = images[image_index]
+        fileID = image.fileID
+        fileID = fileID.replace(" ","")
+        fileID = fileID.replace("'","")
+        fileID = fileID.replace("[","")
+        fileID = fileID.replace("]","")
+        fileID = fileID.split(',')
+
+        sourceImageFilename = os.path.join(settings.MEDIA_ROOT, base_dir, *fileID)
+        destinationImageDir = os.path.join(settings.MEDIA_ROOT, base_dir, 'images', str(series.number), 'decompressed')
+        make_sure_path_exists(destinationImageDir)
+        destinationImageFilename = os.path.join(destinationImageDir, fileID[-1])
+
+        if (os.path.exists(destinationImageFilename) == False):
+            extract_image(sourceImageFilename, destinationImageFilename)
     
 def upload(request):
     if request.method == 'POST':
@@ -190,7 +227,8 @@ def process_dicom(d):
             imageNumber = int(record.InstanceNumber)
             dicom['series'][currentSeries]['images'][imageNumber] = image      
 
-    dicomModel = Dicom.objects.create(base_dir = os.path.split(d)[-1])
+    base_dir = os.path.split(d)[-1]
+    dicomModel = Dicom.objects.create(base_dir = base_dir)
     patientModel = Patient.objects.create(dicom = dicomModel, 
         patientId = dicom['patient']['id'],
         name = dicom['patient']['name'],
@@ -218,15 +256,29 @@ def process_dicom(d):
         )
         for key, image in series['images'].iteritems():
             imageModel = Image.objects.create(series = seriesModel,
-            fileID = image['fileID'],
-            pixelSpacing = image['pixelSpacing'],
-            rows = image['rows'],
-            columns = image['columns'],
-            instanceNumber = image['instanceNumber'],
-            contentDate = image['contentDate'],
-            contentTime = image['contentTime'],
-            imagePosition =  image['imagePosition'],
-            imageOrientation = image['imageOrientation'],
-        )
+                fileID = image['fileID'],
+                pixelSpacing = image['pixelSpacing'],
+                rows = image['rows'],
+                columns = image['columns'],
+                instanceNumber = image['instanceNumber'],
+                contentDate = image['contentDate'],
+                contentTime = image['contentTime'],
+                imagePosition =  image['imagePosition'],
+                imageOrientation = image['imageOrientation'],
+            )
+
+            fileID = imageM['fileID']
+            fileID = fileID.replace(" ","")
+            fileID = fileID.replace("'","")
+            fileID = fileID.replace("[","")
+            fileID = fileID.replace("]","")
+            fileID = fileID.split(',')
+            sourceImageFilename = os.path.join(settings.MEDIA_ROOT, base_dir, *fileID)
+            destinationImageDir = os.path.join(settings.MEDIA_ROOT, base_dir, 'images', str(seriesModel.number), 'decompressed')
+            make_sure_path_exists(destinationImageDir)
+            destinationImageFilename = os.path.join(destinationImageDir, fileID[-1])
+            decompress_image(sourceImageFilename, destinationImageFilename)
+
     patientName = dicom['patient']['name']
+
     return patientName
